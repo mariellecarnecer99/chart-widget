@@ -137,8 +137,43 @@
             ></v-select>
             <div v-if="chartDataType?.value != 'remote'" class="text-center">
               <v-btn variant="flat" class="mt-3" color="primary" outlined
-                ><v-icon>mdi-square-edit-outline</v-icon> EDIT DATA</v-btn
-              >
+                ><v-icon>mdi-square-edit-outline</v-icon> EDIT DATA
+                <v-dialog v-model="dialog" activator="parent" max-width="1000">
+                  <v-card>
+                    <v-card-text>
+                      <v-row justify="space-between">
+                        <v-col cols="5">
+                          <v-sheet class="pa-2 ma-2">
+                            <h3>Chart Data <v-icon>mdi-file-export</v-icon></h3>
+                          </v-sheet>
+                        </v-col>
+                        <v-col cols="1">
+                          <v-sheet class="pa-2 ma-2">
+                            <v-icon @click="dialog = false">mdi-close</v-icon>
+                          </v-sheet>
+                        </v-col>
+                      </v-row>
+                      <hr />
+                    </v-card-text>
+                    <v-card-actions class="d-flex justify-center">
+                      <div>
+                        <v-btn
+                          variant="outlined"
+                          color="primary"
+                          @click="dialog = false"
+                          >Close</v-btn
+                        >
+                        <v-btn
+                          variant="flat"
+                          color="primary"
+                          @click="dialog = false"
+                          >Save Changes</v-btn
+                        >
+                      </div>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-btn>
             </div>
           </div>
         </div>
@@ -469,6 +504,7 @@ export default {
       tab: null,
       chartType: null,
       chartDataType: null,
+      dialog: false,
       sideMenuItems: [
         {
           title: "Chart & Data",
@@ -641,7 +677,6 @@ export default {
 
     selectedChart(val) {
       this.$emit("selectedChartType", val);
-      console.log(val.value);
       this.$router.push({
         path: "/chart-editor",
         query: { chartType: val.value },
@@ -649,12 +684,6 @@ export default {
         // params: { chartType: 'test' }
       });
     },
-
-    // selectedChartData(val) {
-    //   if(val.value === 'remote') {
-
-    //   }
-    // }
   },
 };
 </script>
