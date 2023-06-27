@@ -9,7 +9,11 @@
       <v-spacer></v-spacer>
 
       <p style="color: white">
-        My Chart <v-icon size="small" color="white">mdi-pencil</v-icon>
+        <a href="#" style="text-decoration: none"
+          ><span style="color: #463d6e !important">Sample Chart </span></a
+        >/
+        {{ mainTitle }}
+        <v-icon size="small" color="white">mdi-pencil</v-icon>
       </p>
 
       <v-spacer></v-spacer>
