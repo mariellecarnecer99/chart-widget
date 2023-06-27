@@ -3,17 +3,17 @@
 </template>
 
 <script setup>
-import { use } from 'echarts/core'
-import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
-import { LineChart } from 'echarts/charts'
+import { use } from "echarts/core";
+import { CanvasRenderer, SVGRenderer } from "echarts/renderers";
+import { LineChart } from "echarts/charts";
 import {
   TitleComponent,
   LegendComponent,
   TooltipComponent,
-  PolarComponent
-} from 'echarts/components'
-import VChart, { THEME_KEY } from 'vue-echarts'
-import { ref, provide } from 'vue'
+  PolarComponent,
+} from "echarts/components";
+import VChart, { THEME_KEY } from "vue-echarts";
+import { ref, provide } from "vue";
 
 use([
   LineChart,
@@ -22,52 +22,52 @@ use([
   TitleComponent,
   LegendComponent,
   TooltipComponent,
-  PolarComponent
-])
+  PolarComponent,
+]);
 
-provide(THEME_KEY, 'light')
+provide(THEME_KEY, "light");
 
-const data = []
+const data = [];
 for (let i = 0; i <= 360; i++) {
-  let t = (i / 180) * Math.PI
-  let r = Math.sin(2 * t) * Math.cos(2 * t)
-  data.push([r, i])
+  let t = (i / 180) * Math.PI;
+  let r = Math.sin(2 * t) * Math.cos(2 * t);
+  data.push([r, i]);
 }
 
 const option = ref({
   title: {
-    text: 'Two Value-Axes in Polar'
+    text: "Two Value-Axes in Polar",
   },
   legend: {
-    data: ['line']
+    data: ["line"],
   },
   polar: {
-    center: ['50%', '54%']
+    center: ["50%", "54%"],
   },
   tooltip: {
-    trigger: 'axis',
+    trigger: "axis",
     axisPointer: {
-      type: 'cross'
-    }
+      type: "cross",
+    },
   },
   angleAxis: {
-    type: 'value',
-    startAngle: 0
+    type: "value",
+    startAngle: 0,
   },
   radiusAxis: {
-    min: 0
+    min: 0,
   },
   series: [
     {
-      coordinateSystem: 'polar',
-      name: 'line',
-      type: 'line',
+      coordinateSystem: "polar",
+      name: "line",
+      type: "line",
       showSymbol: false,
-      data: data
-    }
+      data: data,
+    },
   ],
-  animationDuration: 2000
-})
+  animationDuration: 2000,
+});
 </script>
 
 <style scoped>

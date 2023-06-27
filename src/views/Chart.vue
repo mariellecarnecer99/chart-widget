@@ -1,12 +1,10 @@
 <template>
   <div>
-    <ColumnChart v-if="chart?.value === 'column'" />
     <LineChart v-if="chart?.value === 'line'" />
     <BarChart v-if="chart?.value === 'bar'" />
     <PieChart v-if="chart?.value === 'pie'" />
-    <DoughnutChart v-if="chart?.value === 'doughnut'" />
-    <RadarChart v-if="chart?.value === 'radar'" />
-    <PolarAreaChart v-if="chart?.value === 'polarArea'" />
+    <!-- <RadarChart v-if="chart?.value === 'radar'" />
+    <PolarAreaChart v-if="chart?.value === 'polarArea'" /> -->
     <ScatterChart v-if="chart?.value === 'scatter'" />
   </div>
 </template>

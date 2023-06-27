@@ -539,10 +539,10 @@ export default {
         { title: "Analytics", value: "analytics", icon: "mdi-chart-bar" },
       ],
       charts: [
-        {
-          type: "Column Chart",
-          value: "column",
-        },
+        // {
+        //   type: "Column Chart",
+        //   value: "column",
+        // },
         {
           type: "Line Chart",
           value: "line",
@@ -555,18 +555,18 @@ export default {
           type: "Pie Chart",
           value: "pie",
         },
-        {
-          type: "Doughnut Chart",
-          value: "doughnut",
-        },
-        {
-          type: "Radar Chart",
-          value: "radar",
-        },
-        {
-          type: "Polar Area Chart",
-          value: "polarArea",
-        },
+        // {
+        //   type: "Doughnut Chart",
+        //   value: "doughnut",
+        // },
+        // {
+        //   type: "Radar Chart",
+        //   value: "radar",
+        // },
+        // {
+        //   type: "Polar Area Chart",
+        //   value: "polarArea",
+        // },
         {
           type: "Scatter Chart",
           value: "scatter",
@@ -682,8 +682,8 @@ export default {
   },
   mounted() {
     this.chartType = {
-      type: "Column Chart",
-      value: "column",
+      type: "Line Chart",
+      value: "line",
     };
     this.selectedChart(this.chartType);
     this.chartDataType = {
