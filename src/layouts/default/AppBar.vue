@@ -497,6 +497,7 @@
 
     <v-main>
       <Home :title="mainTitle" :desc="description" />
+      <Chart :chart="chartType" />
       <router-view />
     </v-main>
   </v-app>
@@ -504,10 +505,13 @@
 
 <script>
 import Home from "@/views/Home.vue";
+import Chart from "@/views/Chart.vue";
+import { useRouter, useRoute } from "vue-router";
 export default {
   name: "AppBar",
   components: {
     Home,
+    Chart,
   },
   data: () => {
     return {
@@ -691,13 +695,7 @@ export default {
     },
 
     selectedChart(val) {
-      this.$emit("selectedChartType", val);
-      this.$router.push({
-        path: "/chart-editor",
-        query: { chartType: val.value },
-        // name: 'Chart',
-        // params: { chartType: 'test' }
-      });
+      this.chartType = val;
     },
 
     handleTitleChange(event) {

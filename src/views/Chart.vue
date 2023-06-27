@@ -1,13 +1,13 @@
 <template>
   <div>
-    <ColumnChart v-if="$route.query.chartType === 'column'" />
-    <LineChart v-if="$route.query.chartType === 'line'" />
-    <BarChart v-if="$route.query.chartType === 'bar'" />
-    <PieChart v-if="$route.query.chartType === 'pie'" />
-    <DoughnutChart v-if="$route.query.chartType === 'doughnut'" />
-    <RadarChart v-if="$route.query.chartType === 'radar'" />
-    <PolarAreaChart v-if="$route.query.chartType === 'polarArea'" />
-    <ScatterChart v-if="$route.query.chartType === 'scatter'" />
+    <ColumnChart v-if="chart?.value === 'column'" />
+    <LineChart v-if="chart?.value === 'line'" />
+    <BarChart v-if="chart?.value === 'bar'" />
+    <PieChart v-if="chart?.value === 'pie'" />
+    <DoughnutChart v-if="chart?.value === 'doughnut'" />
+    <RadarChart v-if="chart?.value === 'radar'" />
+    <PolarAreaChart v-if="chart?.value === 'polarArea'" />
+    <ScatterChart v-if="chart?.value === 'scatter'" />
   </div>
 </template>
 
@@ -20,4 +20,7 @@ import DoughnutChart from "@/components/charts/DoughnutChart.vue";
 import RadarChart from "@/components/charts/RadarChart.vue";
 import PolarAreaChart from "@/components/charts/PolarAreaChart.vue";
 import ScatterChart from "@/components/charts/ScatterChart.vue";
+const props = defineProps({
+  chart: Object,
+});
 </script>
