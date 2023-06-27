@@ -4,6 +4,11 @@
   </v-app>
 </template>
 
-<script lang="ts" setup>
-import DefaultBar from './AppBar.vue'
+<script>
+import DefaultBar from "./AppBar.vue";
+export default {
+  components: {
+    DefaultBar,
+  },
+};
 </script>

@@ -1,7 +1,13 @@
 <template>
-  <!-- <PieChart /> -->
+  <div class="my-5 text-center">
+    <h2>{{ title }}</h2>
+    <p>{{ desc }}</p>
+  </div>
 </template>
 
 <script setup>
-// import PieChart from '@/components/charts/PieChart.vue'
+const props = defineProps({
+  title: String,
+  desc: String,
+});
 </script>

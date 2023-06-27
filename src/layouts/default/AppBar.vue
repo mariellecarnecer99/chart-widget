@@ -381,9 +381,17 @@
           <div class="data mx-4 mb-4">
             <h3 class="data-title mb-3">General Settings</h3>
             <p>Main Title</p>
-            <v-text-field variant="outlined"></v-text-field>
+            <v-text-field
+              v-model="mainTitle"
+              variant="outlined"
+              @input="handleTitleChange"
+            ></v-text-field>
             <p class="mt-3">Description</p>
-            <v-textarea variant="outlined"></v-textarea>
+            <v-textarea
+              v-model="description"
+              variant="outlined"
+              @input="handleDescChange"
+            ></v-textarea>
             <v-row>
               <v-col cols="7">
                 <p>Chart Height</p>
@@ -488,14 +496,19 @@
     </v-navigation-drawer>
 
     <v-main>
+      <Home :title="mainTitle" :desc="description" />
       <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Home from "@/views/Home.vue";
 export default {
   name: "AppBar",
+  components: {
+    Home,
+  },
   data: () => {
     return {
       drawer: false,
@@ -505,6 +518,8 @@ export default {
       chartType: null,
       chartDataType: null,
       dialog: false,
+      mainTitle: "My Chart",
+      description: null,
       sideMenuItems: [
         {
           title: "Chart & Data",
@@ -683,6 +698,14 @@ export default {
         // name: 'Chart',
         // params: { chartType: 'test' }
       });
+    },
+
+    handleTitleChange(event) {
+      this.mainTitle = event.target.value;
+    },
+
+    handleDescChange(event) {
+      this.description = event.target.value;
     },
   },
 };
