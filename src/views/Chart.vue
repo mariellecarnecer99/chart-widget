@@ -97,6 +97,7 @@ function removeItem(i) {
 .vue-grid-item:not(.vue-grid-placeholder) {
   background: #ccc;
   border: 1px solid black;
+  padding: 25px 0 15px 0;
 }
 
 .vue-grid-item.resizing {
