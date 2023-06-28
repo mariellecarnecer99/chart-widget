@@ -53,9 +53,3 @@ const option = ref({
   ],
 });
 </script>
-
-<style scoped>
-.chart {
-  height: 100vh;
-}
-</style>

@@ -4,21 +4,18 @@
       <v-app-bar-title>
         <v-icon icon="mdi-chart-box" color="white" />
 
-        <span class="ml-3" style="color: white">Edit Widget</span>
+        <span class="ml-3" style="color: white">Chart Widget</span>
       </v-app-bar-title>
       <v-spacer></v-spacer>
 
-      <p style="color: white">
-        <a href="#" style="text-decoration: none"
-          ><span style="color: #463d6e !important">Sample Chart </span></a
-        >/
+      <p v-if="mainTitle" style="color: white">
         {{ mainTitle }}
         <v-icon size="small" color="white">mdi-pencil</v-icon>
       </p>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon size="small" color="white">mdi-undo</v-icon>
         <v-tooltip activator="parent" location="bottom"> Undo </v-tooltip>
       </v-btn>
@@ -26,21 +23,21 @@
       <v-btn icon>
         <v-icon size="small" color="white">mdi-redo</v-icon>
         <v-tooltip activator="parent" location="bottom"> Redo </v-tooltip>
-      </v-btn>
+      </v-btn> -->
 
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon size="small" color="white">mdi-application-edit-outline</v-icon>
         <v-tooltip activator="parent" location="bottom">
           Change background
         </v-tooltip>
-      </v-btn>
+      </v-btn> -->
 
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon size="small" color="white">mdi-xml</v-icon>
         <v-tooltip activator="parent" location="bottom">
           Add to Website
         </v-tooltip>
-      </v-btn>
+      </v-btn> -->
 
       <v-btn class="mr-3" variant="outlined" size="small" color="primary"
         >Preview Changes</v-btn
@@ -95,22 +92,36 @@
     </v-navigation-drawer>
 
     <v-navigation-drawer
+      color="rgba(211,220,230,1)"
       v-model="drawer"
-      class="bg-blue-grey-darken-4"
       app
-      width="400"
+      width="300"
     >
       <div id="sidebar">
         <div class="d-flex justify-end sidebar-toggle mx-4 mt-3">
-          <div class="mb-2" @click="drawer = !drawer" id="btn-toggle">
+          <div class="" @click="drawer = !drawer" id="btn-toggle">
             <v-icon id="btn-toggle-icon" x-large>mdi-close</v-icon>
           </div>
         </div>
         <div class="sidebar-body">
-          <div class="chartType mx-4">
-            <h3 class="chartType-title mb-3">Chart Type</h3>
-            <p class="chartType-details mb-2">
-              <!-- <v-icon x-large>mdi-crown</v-icon>  -->
+          <div class="chartType mx-2">
+            <h3 class="chartType-title mb-4 ml-6">Chart Type</h3>
+            <div class="chartType">
+              <v-row class="mb-6" no-gutters>
+                <v-col
+                  cols="3"
+                  v-for="item in charts"
+                  class="mb-5 d-flex justify-center"
+                >
+                  <img
+                    :src="item.img"
+                    style="width: 30px; height: 30px"
+                    @click="selectedChart(item)"
+                  />
+                </v-col>
+              </v-row>
+            </div>
+            <!-- <p class="chartType-details mb-2">
               Select Type
             </p>
             <v-select
@@ -122,7 +133,7 @@
               item-title="type"
               item-value="value"
               @update:modelValue="selectedChart"
-            ></v-select>
+            ></v-select> -->
           </div>
           <hr class="mb-4" />
           <div class="data mx-4">
@@ -501,7 +512,7 @@
 
     <v-main>
       <Home :title="mainTitle" :desc="description" />
-      <Chart :chart="chartType" />
+      <Chart :layoutItem="layout" />
       <router-view />
     </v-main>
   </v-app>
@@ -510,7 +521,15 @@
 <script>
 import Home from "@/views/Home.vue";
 import Chart from "@/views/Chart.vue";
-import { useRouter, useRoute } from "vue-router";
+import line from "@/assets/line.png";
+import bar from "@/assets/bar.png";
+import column from "@/assets/column.png";
+import combination from "@/assets/combination.png";
+import area from "@/assets/area.png";
+import pie from "@/assets/pie.png";
+import rose from "@/assets/rose.png";
+import vertical_combination from "@/assets/vertical_combination.png";
+import doughnut from "@/assets/doughnut.png";
 export default {
   name: "AppBar",
   components: {
@@ -526,8 +545,10 @@ export default {
       chartType: null,
       chartDataType: null,
       dialog: false,
-      mainTitle: "My Chart",
+      mainTitle: "",
       description: null,
+      layout: [],
+      index: 0,
       sideMenuItems: [
         {
           title: "Chart & Data",
@@ -539,37 +560,50 @@ export default {
         { title: "Analytics", value: "analytics", icon: "mdi-chart-bar" },
       ],
       charts: [
-        // {
-        //   type: "Column Chart",
-        //   value: "column",
-        // },
+        {
+          type: "Column Chart",
+          value: "column",
+          img: column,
+        },
         {
           type: "Line Chart",
           value: "line",
+          img: line,
         },
         {
           type: "Bar Chart",
           value: "bar",
+          img: bar,
         },
         {
           type: "Pie Chart",
           value: "pie",
+          img: pie,
         },
-        // {
-        //   type: "Doughnut Chart",
-        //   value: "doughnut",
-        // },
-        // {
-        //   type: "Radar Chart",
-        //   value: "radar",
-        // },
-        // {
-        //   type: "Polar Area Chart",
-        //   value: "polarArea",
-        // },
         {
-          type: "Scatter Chart",
-          value: "scatter",
+          type: "Doughnut Chart",
+          value: "doughnut",
+          img: doughnut,
+        },
+        {
+          type: "Combination Chart",
+          value: "combination",
+          img: combination,
+        },
+        {
+          type: "Area Chart",
+          value: "area",
+          img: area,
+        },
+        {
+          type: "Vertical Combination Chart",
+          value: "vertical_combination",
+          img: vertical_combination,
+        },
+        {
+          type: "Nightingale Chart",
+          value: "nightingale",
+          img: rose,
         },
       ],
       fonts: [
@@ -681,11 +715,11 @@ export default {
     };
   },
   mounted() {
-    this.chartType = {
-      type: "Line Chart",
-      value: "line",
-    };
-    this.selectedChart(this.chartType);
+    // this.chartType = {
+    //   type: "Line Chart",
+    //   value: "line",
+    // };
+    // this.selectedChart(this.chartType);
     this.chartDataType = {
       dataType: "Static Data",
       value: "static",
@@ -699,7 +733,16 @@ export default {
     },
 
     selectedChart(val) {
-      this.chartType = val;
+      const item = {
+        x: 0,
+        y: 0,
+        w: 2,
+        h: 2,
+        i: this.index + "",
+        chart: val,
+      };
+      this.index++;
+      this.layout.push(item);
     },
 
     handleTitleChange(event) {

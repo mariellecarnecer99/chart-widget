@@ -13,6 +13,7 @@ import {
   DatasetComponent,
   TransformComponent,
   LegendComponent,
+  ToolboxComponent,
 } from "echarts/components";
 import VChart from "vue-echarts";
 
@@ -28,6 +29,7 @@ echarts.use([
   GridComponent,
   DatasetComponent,
   TransformComponent,
+  ToolboxComponent,
   BarChart,
   LineChart,
   PieChart,
@@ -37,9 +39,3 @@ echarts.use([
   CanvasRenderer,
 ]);
 </script>
-
-<style scoped>
-.chart {
-  height: 100vh;
-}
-</style>

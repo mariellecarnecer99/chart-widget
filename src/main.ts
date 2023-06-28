@@ -7,6 +7,8 @@
 // Components
 import App from './App.vue'
 
+import VueGridLayout from 'vue-grid-layout'
+
 // Composables
 import { createApp } from 'vue'
 
@@ -17,4 +19,4 @@ const app = createApp(App)
 
 registerPlugins(app)
 
-app.mount('#app')
+app.use(VueGridLayout).mount('#app')
