@@ -4,10 +4,9 @@
       <grid-layout
         :layout="layoutItem"
         :col-num="12"
-        :row-height="30"
-        :is-draggable="draggable"
-        :is-resizable="resizable"
-        :vertical-compact="compact"
+        :is-draggable="true"
+        :is-resizable="true"
+        :vertical-compact="true"
         :use-css-transforms="true"
       >
         <grid-item

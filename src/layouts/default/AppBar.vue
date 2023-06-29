@@ -67,7 +67,7 @@
         </v-list-item>
       </v-list>
 
-      <template v-slot:append>
+      <!-- <template v-slot:append>
         <v-menu location="top">
           <template v-slot:activator="{ props }">
             <v-list-item
@@ -88,12 +88,12 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </template>
+      </template> -->
     </v-navigation-drawer>
 
     <v-navigation-drawer
-      color="rgba(211,220,230,1)"
       v-model="drawer"
+      color="rgba(211,220,230,1)"
       app
       width="300"
     >
@@ -105,7 +105,7 @@
         </div>
         <div class="sidebar-body">
           <div class="chartType mx-2">
-            <h3 class="chartType-title mb-4 ml-6">Chart Type</h3>
+            <h3 class="chartType-title mb-4 ml-6">Charts</h3>
             <div class="chartType">
               <v-row class="mb-6" no-gutters>
                 <v-col
@@ -115,7 +115,7 @@
                 >
                   <img
                     :src="item.img"
-                    style="width: 30px; height: 30px"
+                    style="width: 25px; height: 25px"
                     @click="selectedChart(item)"
                   />
                 </v-col>
@@ -135,7 +135,7 @@
               @update:modelValue="selectedChart"
             ></v-select> -->
           </div>
-          <hr class="mb-4" />
+          <!-- <hr class="mb-4" />
           <div class="data mx-4">
             <h3 class="data-title mb-3">Data</h3>
             <p class="data-details mb-2">
@@ -190,14 +190,14 @@
                 </v-dialog>
               </v-btn>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </v-navigation-drawer>
 
     <v-navigation-drawer
       v-model="appearanceDrawer"
-      class="bg-blue-grey-darken-4"
+      color="rgba(211,220,230,1)"
       app
       width="400"
     >
@@ -364,7 +364,7 @@
 
     <v-navigation-drawer
       v-model="settingsDrawer"
-      class="bg-blue-grey-darken-4"
+      color="rgba(211,220,230,1)"
       app
       width="400"
     >
