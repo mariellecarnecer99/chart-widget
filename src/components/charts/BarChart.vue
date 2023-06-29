@@ -1,5 +1,55 @@
 <template>
   <ChartData :option="options" />
+  <div class="text-center">
+    <v-dialog v-model="dialog" width="500px">
+      <v-card>
+        <v-card-text>
+          <v-row justify="space-between">
+            <v-col cols="6">
+              <v-sheet class="my-2"><h2>Parameter Area</h2></v-sheet>
+            </v-col>
+            <v-col cols="1">
+              <v-sheet class="my-2"
+                ><v-icon @click="dialog = false">mdi-close</v-icon></v-sheet
+              >
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <p class="text-center mb-2">x-Axis</p>
+              <v-select
+                v-model="xAxisData"
+                label="Select x-axis data"
+                :items="['Days', 'Number', 'Category', 'Time']"
+                variant="solo"
+                @update:modelValue="selectedXaxisData"
+              ></v-select>
+            </v-col>
+            <v-col>
+              <p class="text-center mb-2">y-Axis</p>
+              <v-select
+                v-model="yAxisData"
+                label="Select y-axis data"
+                :items="[
+                  'Default',
+                  'Days',
+                  'Precipitation',
+                  'Temperature',
+                  'Category',
+                ]"
+                variant="solo"
+                @update:modelValue="selectedYaxisData"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <p class="text-center mb-2">Series Data</p>
+        </v-card-text>
+        <!-- <v-card-actions class="d-flex justify-center mb-5">
+          <v-btn color="primary" variant="flat">Save Changes</v-btn>
+        </v-card-actions> -->
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -11,12 +61,19 @@ export default {
   data: () => {
     return {
       options: null,
+      dialog: false,
+      xAxisData: [],
+      yAxisData: [],
     };
   },
   mounted() {
     this.handleOptions();
   },
   methods: {
+    handleDialog() {
+      this.dialog = true;
+    },
+
     handleOptions() {
       this.options = {
         toolbox: {
@@ -25,9 +82,7 @@ export default {
               show: true,
               title: "Edit Data",
               icon: "M33.87,8.32,28,2.42a2.07,2.07,0,0,0-2.92,0L4.27,23.2l-1.9,8.2a2.06,2.06,0,0,0,2,2.5,2.14,2.14,0,0,0,.43,0L13.09,32,33.87,11.24A2.07,2.07,0,0,0,33.87,8.32ZM12.09,30.2,4.32,31.83l1.77-7.62L21.66,8.7l6,6ZM29,13.25l-6-6,3.48-3.46,5.9,6Z",
-              onclick: function () {
-                // do something
-              },
+              onclick: () => this.handleDialog(),
             },
             dataView: { show: true, readOnly: false },
             restore: { show: true },
@@ -62,6 +117,85 @@ export default {
           },
         ],
       };
+    },
+
+    selectedXaxisData(x) {
+      if (x === "Days") {
+        const daysItem = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+        this.options.xAxis.data = daysItem;
+      } else if (x === "Number") {
+        const numberItem = [1, 2, 3, 4, 5];
+        this.options.xAxis.data = numberItem;
+      } else if (x === "Category") {
+        const categoryItem = [
+          "Direct",
+          "Email",
+          "Ad Networks",
+          "Video Ads",
+          "Search Engines",
+        ];
+        this.options.xAxis.data = categoryItem;
+      } else if (x === "Time") {
+        const timeItem = [10, 40, 70, 100, 130];
+        this.options.xAxis.data = timeItem;
+      }
+    },
+
+    selectedYaxisData(y) {
+      if (y === "Default") {
+        const defaultItem = {
+          type: "value",
+          min: 0,
+          max: 200,
+          interval: 50,
+          axisLabel: {
+            formatter: "{value}",
+          },
+        };
+        this.options.yAxis = defaultItem;
+      } else if (y === "Days") {
+        const daysItem = {
+          type: "category",
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        };
+        this.options.yAxis = daysItem;
+      } else if (y === "Precipitation") {
+        const precipitationItem = {
+          type: "value",
+          name: "Precipitation",
+          min: 0,
+          max: 250,
+          interval: 50,
+          axisLabel: {
+            formatter: "{value} ml",
+          },
+        };
+        this.options.yAxis = precipitationItem;
+      } else if (y === "Temperature") {
+        const tempItem = {
+          type: "value",
+          name: "Temperature",
+          min: 0,
+          max: 25,
+          interval: 5,
+          axisLabel: {
+            formatter: "{value} °C",
+          },
+        };
+        this.options.yAxis = tempItem;
+      } else if (y === "Category") {
+        const categoryItem = {
+          type: "category",
+          data: [
+            "Direct",
+            "Email",
+            "Ad Networks",
+            "Video Ads",
+            "Search Engines",
+          ],
+        };
+        this.options.yAxis = categoryItem;
+      }
     },
   },
 };

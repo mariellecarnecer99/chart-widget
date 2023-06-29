@@ -545,7 +545,7 @@ export default {
       chartType: null,
       chartDataType: null,
       dialog: false,
-      mainTitle: "",
+      mainTitle: null,
       description: null,
       layout: [],
       index: 0,
@@ -714,17 +714,17 @@ export default {
       ],
     };
   },
-  mounted() {
-    // this.chartType = {
-    //   type: "Line Chart",
-    //   value: "line",
-    // };
-    // this.selectedChart(this.chartType);
-    this.chartDataType = {
-      dataType: "Static Data",
-      value: "static",
-    };
-  },
+  // mounted() {
+  //   this.chartType = {
+  //     type: "Line Chart",
+  //     value: "line",
+  //   };
+  //   this.selectedChart(this.chartType);
+  //   this.chartDataType = {
+  //     dataType: "Static Data",
+  //     value: "static",
+  //   };
+  // },
   methods: {
     onClickDrawer(val) {
       this.drawer = val === 0;
