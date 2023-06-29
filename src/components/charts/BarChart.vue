@@ -42,7 +42,14 @@
               ></v-select>
             </v-col>
           </v-row>
-          <p class="text-center mb-2">Series Data</p>
+          <!-- <p class="text-center mb-2">Series Data</p>
+          <v-row>
+            <v-col v-for="(item, index) in options.series" :key="index">
+              <v-text-field v-for="i in item.data" variant="outlined">{{
+                i
+              }}</v-text-field>
+            </v-col>
+          </v-row> -->
         </v-card-text>
         <!-- <v-card-actions class="d-flex justify-center mb-5">
           <v-btn color="primary" variant="flat">Save Changes</v-btn>
@@ -64,10 +71,12 @@ export default {
       dialog: false,
       xAxisData: [],
       yAxisData: [],
+      seriesData: [],
     };
   },
   mounted() {
     this.handleOptions();
+    console.log(this.options);
   },
   methods: {
     handleDialog() {
@@ -121,11 +130,23 @@ export default {
 
     selectedXaxisData(x) {
       if (x === "Days") {
-        const daysItem = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-        this.options.xAxis.data = daysItem;
+        const daysItem = {
+          categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          values: {
+            data: [60, 35, 110, 80, 95, 140, 185],
+          },
+        };
+        this.options.xAxis.data = daysItem.categories;
+        this.options.series = daysItem.values;
       } else if (x === "Number") {
-        const numberItem = [1, 2, 3, 4, 5];
-        this.options.xAxis.data = numberItem;
+        const numberItem = {
+          categories: [1, 2, 3, 4, 5],
+          values: {
+            data: [50, 100, 150, 200, 250],
+          },
+        };
+        this.options.xAxis.data = numberItem.categories;
+        this.options.series = numberItem.values;
       } else if (x === "Category") {
         const categoryItem = [
           "Direct",
@@ -136,8 +157,14 @@ export default {
         ];
         this.options.xAxis.data = categoryItem;
       } else if (x === "Time") {
-        const timeItem = [10, 40, 70, 100, 130];
-        this.options.xAxis.data = timeItem;
+        const timeItem = {
+          categories: [10, 40, 70, 100, 130],
+          values: {
+            data: [55, 75, 95, 115, 135],
+          },
+        };
+        this.options.xAxis.data = timeItem.categories;
+        this.options.series = timeItem.values;
       }
     },
 
@@ -197,6 +224,10 @@ export default {
         this.options.yAxis = categoryItem;
       }
     },
+
+    // selectedSeriesData(s) {
+    //   console.log(s);
+    // },
   },
 };
 </script>
