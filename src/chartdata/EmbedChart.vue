@@ -1,22 +1,34 @@
 <template>
-  <div id="embedChart"></div>
+  <div id="embedChart" style="width: 600px; height: 400px"></div>
 </template>
 
-<script>
-import BarChart from "@/components/charts/BarChart.vue";
-var container = document.getElementById("embedChart");
-var chart = echarts.init(container, null, {
-  // use SVG renderer
-  renderer: "svg",
-});
-var option = {};
+<script setup>
+import * as echarts from "echarts/core";
 
-window.onload = function () {
-  chart.setOption(option);
-  // add selectable class
-  chart.getZr().painter.getSvgDom().classList.add("selectable");
-  // or just override the `user-select` style
-  // chart.getZr().painter.getSvgDom().style.userSelect = 'auto';
+// Create the echarts instance
+var myChart = echarts.init(document.getElementById("embedChart"));
+
+var option = {
+  title: {
+    text: "ECharts ",
+  },
+  tooltip: {},
+  legend: {
+    data: ["aa"],
+  },
+  xAxis: {
+    data: ["aa", "bb", "cc", "dd", "ee", "ff"],
+  },
+  yAxis: {},
+  series: [
+    {
+      name: "rr",
+      type: "bar",
+      data: [5, 20, 36, 10, 10, 20],
+    },
+  ],
 };
-window.onresize = chart.resize;
+
+// Draw the chart
+myChart.setOption(option);
 </script>

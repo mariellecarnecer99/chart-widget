@@ -57,7 +57,7 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="embedDialog" width="500px">
+    <v-dialog v-model="embedDialog" width="710px">
       <v-card>
         <v-card-text>
           <v-row justify="space-between">
@@ -74,10 +74,14 @@
               >
             </v-col>
           </v-row>
-          <v-textarea variant="outlined"></v-textarea>
-          <div class="d-flex justify-end">
-            <v-btn color="primary" variant="flat">Copy</v-btn>
-          </div>
+          <v-textarea
+            v-model="embedChart"
+            id="tocopy"
+            variant="outlined"
+            density="compact"
+            append-inner-icon="mdi-content-copy"
+            @click:append-inner="copyText"
+          ></v-textarea>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -98,6 +102,8 @@ export default {
       xAxisData: [],
       yAxisData: [],
       seriesData: [],
+      embedChart:
+        '<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"><\/script><div id="myChart"></div>',
     };
   },
   mounted() {
@@ -110,6 +116,12 @@ export default {
 
     handleEmbedCode() {
       this.embedDialog = true;
+    },
+
+    copyText() {
+      const input = document.getElementById("tocopy");
+      input.select();
+      document.execCommand("copy");
     },
 
     handleOptions() {
@@ -251,10 +263,6 @@ export default {
         this.options.yAxis = categoryItem;
       }
     },
-
-    // selectedSeriesData(s) {
-    //   console.log(s);
-    // },
   },
 };
 </script>
