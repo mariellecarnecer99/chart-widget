@@ -109,7 +109,9 @@ export default {
   mounted() {
     this.handleOptions();
     this.handleScript();
-    this.nodeToString(document.getElementById("chart-container"));
+    const d = document.getElementById("chart-container");
+    console.log(d);
+    this.nodeToString(d);
   },
   methods: {
     nodeToString(node) {

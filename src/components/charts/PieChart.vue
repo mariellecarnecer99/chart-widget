@@ -15,10 +15,14 @@
             >
           </v-col>
         </v-row>
-        <v-textarea variant="outlined"></v-textarea>
-        <div class="d-flex justify-end">
-          <v-btn color="primary" variant="flat">Copy</v-btn>
-        </div>
+        <v-textarea
+          v-model="embedChart"
+          id="tocopy"
+          variant="outlined"
+          density="compact"
+          append-inner-icon="mdi-content-copy"
+          @click:append-inner="copyText"
+        ></v-textarea>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -26,6 +30,7 @@
 
 <script>
 import ChartData from "@/chartdata/ChartData.vue";
+import myfunc from "@/chartScript.js";
 export default {
   components: {
     ChartData,
@@ -34,12 +39,37 @@ export default {
     return {
       options: null,
       embedDialog: false,
+      embedChart: "",
     };
   },
   mounted() {
     this.handleOptions();
+    this.handleScript();
+    const d = document.getElementById("chart-container");
+    // console.log(d);
+    this.nodeToString(d);
   },
   methods: {
+    nodeToString(node) {
+      var tmpNode = document.createElement("div");
+      tmpNode.appendChild(node.cloneNode(true));
+      var str = tmpNode.innerHTML;
+      tmpNode = node = null; // prevent memory leaks in IE
+      this.embedChart = str;
+    },
+
+    copyText() {
+      const input = document.getElementById("tocopy");
+      input.select();
+      document.execCommand("copy");
+    },
+
+    handleScript() {
+      const key = "toolbox";
+      const { [key]: foo, ...rest } = this.options;
+      myfunc(rest);
+    },
+
     handleEmbedCode() {
       this.embedDialog = true;
     },
