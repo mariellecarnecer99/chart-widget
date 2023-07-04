@@ -57,7 +57,7 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="embedDialog" width="710px">
+    <v-dialog v-model="embedDialog" width="500px">
       <v-card>
         <v-card-text>
           <v-row justify="space-between">
@@ -90,6 +90,7 @@
 
 <script>
 import ChartData from "@/chartdata/ChartData.vue";
+import myfunc from "@/chartScript.js";
 export default {
   components: {
     ChartData,
@@ -102,14 +103,23 @@ export default {
       xAxisData: [],
       yAxisData: [],
       seriesData: [],
-      embedChart:
-        '<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"><\/script><div id="myChart"></div>',
+      embedChart: "",
     };
   },
   mounted() {
     this.handleOptions();
+    this.handleScript();
+    this.nodeToString(document.getElementById("chart-container"));
   },
   methods: {
+    nodeToString(node) {
+      var tmpNode = document.createElement("div");
+      tmpNode.appendChild(node.cloneNode(true));
+      var str = tmpNode.innerHTML;
+      tmpNode = node = null; // prevent memory leaks in IE
+      this.embedChart = str;
+    },
+
     handleDialog() {
       this.dialog = true;
     },
@@ -122,6 +132,12 @@ export default {
       const input = document.getElementById("tocopy");
       input.select();
       document.execCommand("copy");
+    },
+
+    handleScript() {
+      const key = "toolbox";
+      const { [key]: foo, ...rest } = this.options;
+      myfunc(rest);
     },
 
     handleOptions() {
@@ -266,3 +282,10 @@ export default {
   },
 };
 </script>
+
+<style>
+#chart-container {
+  visibility: hidden;
+  max-height: 0;
+}
+</style>
