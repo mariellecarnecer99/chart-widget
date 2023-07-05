@@ -8,6 +8,7 @@
 import App from './App.vue'
 
 import VueGridLayout from 'vue-grid-layout'
+import vueCustomElement from 'vue-custom-element'
 
 // Composables
 import { createApp } from 'vue'
@@ -16,7 +17,7 @@ import { createApp } from 'vue'
 import { registerPlugins } from '@/plugins'
 
 const app = createApp(App)
-
+// app.customElement('vue-widget', App)
 registerPlugins(app)
 
-app.use(VueGridLayout).mount('#app')
+app.use(VueGridLayout, vueCustomElement).mount('#app')

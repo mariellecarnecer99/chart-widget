@@ -95,6 +95,9 @@ export default {
   components: {
     ChartData,
   },
+  props: {
+    index: Number,
+  },
   data: () => {
     return {
       options: null,
