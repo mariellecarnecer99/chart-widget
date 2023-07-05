@@ -1,0 +1,1 @@
+import{G as s,aA as c,aB as t,aH as a}from"./index-cd0e7f02.js";const n={class:"my-5 text-center"},i={__name:"Home",props:{title:String,desc:String},setup(e){return(r,l)=>(s(),c("div",n,[t("h2",null,a(e.title),1),t("p",null,a(e.desc),1)]))}};export{i as default};
