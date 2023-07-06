@@ -18,7 +18,10 @@
           :h="item.h"
           :i="item.i"
         >
-          <LineChart v-if="item.chart.value === 'line'" :index="item.i" />
+          <LineChart
+            v-if="item.chart.value === 'line'"
+            :selectedChartLib="item.selectedLib"
+          />
           <BarChart v-if="item.chart.value === 'bar'" />
           <PieChart v-if="item.chart.value === 'pie'" />
           <ColumnChart v-if="item.chart.value === 'column'" />

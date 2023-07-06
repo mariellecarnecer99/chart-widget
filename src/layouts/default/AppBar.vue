@@ -104,9 +104,20 @@
           </div>
         </div>
         <div class="sidebar-body">
-          <div class="chartType mx-2">
+          <div class="chartType">
             <h3 class="chartType-title mb-4 ml-6">Charts</h3>
-            <div class="chartType">
+            <v-select
+              v-model="selectedChartLibrary"
+              label="Select Charting Libraries"
+              variant="outlined"
+              class="mx-6"
+              :items="chartLibraries"
+              item-title="type"
+              item-value="value"
+              @update:modelValue="selectedChartLib"
+            >
+            </v-select>
+            <div v-if="selectedChartLibrary" class="chartType">
               <v-row class="mb-6" no-gutters>
                 <v-col
                   cols="3"
@@ -121,76 +132,7 @@
                 </v-col>
               </v-row>
             </div>
-            <!-- <p class="chartType-details mb-2">
-              Select Type
-            </p>
-            <v-select
-              v-model="chartType"
-              label="Select Chart"
-              return-object
-              outlined
-              :items="charts"
-              item-title="type"
-              item-value="value"
-              @update:modelValue="selectedChart"
-            ></v-select> -->
           </div>
-          <!-- <hr class="mb-4" />
-          <div class="data mx-4">
-            <h3 class="data-title mb-3">Data</h3>
-            <p class="data-details mb-2">
-              Click the "Edit Data" button to import data to your chart.
-            </p>
-            <v-select
-              v-model="chartDataType"
-              label="Select Data"
-              return-object
-              outlined
-              :items="chartData"
-              item-title="dataType"
-              item-value="value"
-            ></v-select>
-            <div v-if="chartDataType?.value != 'remote'" class="text-center">
-              <v-btn variant="flat" class="mt-3" color="primary" outlined
-                ><v-icon>mdi-square-edit-outline</v-icon> EDIT DATA
-                <v-dialog v-model="dialog" activator="parent" max-width="1000">
-                  <v-card>
-                    <v-card-text>
-                      <v-row justify="space-between">
-                        <v-col cols="5">
-                          <v-sheet class="pa-2 ma-2">
-                            <h3>Chart Data <v-icon>mdi-file-export</v-icon></h3>
-                          </v-sheet>
-                        </v-col>
-                        <v-col cols="1">
-                          <v-sheet class="pa-2 ma-2">
-                            <v-icon @click="dialog = false">mdi-close</v-icon>
-                          </v-sheet>
-                        </v-col>
-                      </v-row>
-                      <hr />
-                    </v-card-text>
-                    <v-card-actions class="d-flex justify-center">
-                      <div>
-                        <v-btn
-                          variant="outlined"
-                          color="primary"
-                          @click="dialog = false"
-                          >Close</v-btn
-                        >
-                        <v-btn
-                          variant="flat"
-                          color="primary"
-                          @click="dialog = false"
-                          >Save Changes</v-btn
-                        >
-                      </div>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-btn>
-            </div>
-          </div> -->
         </div>
       </div>
     </v-navigation-drawer>
@@ -549,6 +491,7 @@ export default {
       description: null,
       layout: [],
       index: 0,
+      selectedChartLibrary: null,
       sideMenuItems: [
         {
           title: "Chart & Data",
@@ -712,24 +655,43 @@ export default {
         { title: "Support" },
         { title: "Logout" },
       ],
+      chartLibraries: [
+        {
+          type: "JSCharting",
+          value: "jsCharting",
+        },
+        {
+          type: "ApexCharts",
+          value: "apexCharts",
+        },
+        {
+          type: "Google Charts",
+          value: "googlecharts",
+        },
+        {
+          type: "Apache ECharts",
+          value: "eCharts",
+        },
+        {
+          type: "Chart.js",
+          value: "chartjs",
+        },
+        {
+          type: "amCharts",
+          value: "amCharts",
+        },
+      ],
     };
   },
-  // mounted() {
-  //   this.chartType = {
-  //     type: "Line Chart",
-  //     value: "line",
-  //   };
-  //   this.selectedChart(this.chartType);
-  //   this.chartDataType = {
-  //     dataType: "Static Data",
-  //     value: "static",
-  //   };
-  // },
   methods: {
     onClickDrawer(val) {
       this.drawer = val === 0;
       this.appearanceDrawer = val === 1;
       this.settingsDrawer = val === 2;
+    },
+
+    selectedChartLib(val) {
+      console.log(val);
     },
 
     selectedChart(val) {
@@ -740,6 +702,7 @@ export default {
         h: 2,
         i: this.index + "",
         chart: val,
+        selectedLib: this.selectedChartLibrary,
       };
       this.index++;
       this.layout.push(item);
