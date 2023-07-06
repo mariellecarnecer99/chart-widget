@@ -1,10 +1,9 @@
 <template>
-  <ChartData v-if="selectedChartLib === 'eCharts'" :option="options" />
-  <JSCharting v-if="selectedChartLib === 'jsCharting'" />
+  <EChart v-if="selectedChartLib === 'eCharts'" :option="options" />
+  <!-- <JSCharting v-if="selectedChartLib === 'jsCharting'" /> -->
   <ChartJS v-if="selectedChartLib === 'chartjs'" />
   <ApexChartData v-if="selectedChartLib === 'apexCharts'" />
   <GChartData v-if="selectedChartLib === 'googlecharts'" />
-  <!-- <AmChartData v-if="selectedChartLib === 'amCharts'" /> -->
   <div class="text-center">
     <v-dialog v-model="dialog" width="500px">
       <v-card>
@@ -94,21 +93,19 @@
 </template>
 
 <script>
-import ChartData from "@/chartdata/ChartData.vue";
-import JSCharting from "@/chartdata/JSCharting.vue";
+import EChart from "@/chartdata/EChart.vue";
+// import JSCharting from "@/chartdata/JSCharting.vue";
 import ChartJS from "@/chartdata/ChartJS.vue";
 import ApexChartData from "@/chartdata/ApexChartData.vue";
 import GChartData from "@/chartdata/GChartData.vue";
-// import AmChartData from "@/chartdata/AmChartData.vue";
 import myfunc from "@/chartScript.js";
 export default {
   components: {
-    ChartData,
-    JSCharting,
+    EChart,
+    // JSCharting,
     ChartJS,
     ApexChartData,
     GChartData,
-    // AmChartData,
   },
   props: {
     selectedChartLib: String,
@@ -128,7 +125,6 @@ export default {
     this.handleOptions();
     this.handleScript();
     const d = document.getElementById("chart-container");
-    console.log(d);
     this.nodeToString(d);
   },
   methods: {

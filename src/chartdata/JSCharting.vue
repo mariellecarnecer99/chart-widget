@@ -1,10 +1,10 @@
 <template>
-  <JsCharting :options="chartOptions" style="height: 100%"></JsCharting>
+  <JSChart :options="chartOptions" style="height: 100%"></JSChart>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import JsCharting, { JSC } from "jscharting-vue";
+import JSChart, { JSC } from "jscharting-vue";
 
 export default defineComponent({
   name: "lineChart",
@@ -24,7 +24,7 @@ export default defineComponent({
     return { chartOptions };
   },
   components: {
-    JsCharting,
+    JSChart,
   },
 });
 </script>

@@ -656,18 +656,18 @@ export default {
         { title: "Logout" },
       ],
       chartLibraries: [
-        {
-          type: "JSCharting",
-          value: "jsCharting",
-        },
+        // {
+        //   type: "JSCharting",
+        //   value: "jsCharting",
+        // },
         {
           type: "ApexCharts",
           value: "apexCharts",
         },
-        {
-          type: "Google Charts",
-          value: "googlecharts",
-        },
+        // {
+        //   type: "Google Charts",
+        //   value: "googlecharts",
+        // },
         {
           type: "Apache ECharts",
           value: "eCharts",
@@ -676,10 +676,10 @@ export default {
           type: "Chart.js",
           value: "chartjs",
         },
-        {
-          type: "amCharts",
-          value: "amCharts",
-        },
+        // {
+        //   type: "amCharts",
+        //   value: "amCharts",
+        // },
       ],
     };
   },

@@ -1,5 +1,5 @@
 <template>
-  <ChartData :option="options" />
+  <EChart :option="options" />
   <v-dialog v-model="embedDialog" width="500px">
     <v-card>
       <v-card-text>
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import ChartData from "@/chartdata/ChartData.vue";
+import EChart from "@/chartdata/EChart.vue";
 import myfunc from "@/chartScript.js";
 export default {
   components: {
-    ChartData,
+    EChart,
   },
   data: () => {
     return {

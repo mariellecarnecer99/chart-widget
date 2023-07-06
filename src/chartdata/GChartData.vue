@@ -1,5 +1,5 @@
 <template>
-  <GoogleChart :resizeDebounce="500" />
+  <GoogleChart />
 </template>
 
 <script>
