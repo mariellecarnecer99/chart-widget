@@ -9,8 +9,6 @@ import App from './App.vue'
 
 import VueGridLayout from 'vue-grid-layout'
 
-import vueCustomElement from 'vue-custom-element'
-
 import ECharts from 'vue-echarts'
 import { use } from "echarts/core"
 import {
@@ -45,10 +43,30 @@ use([
 ])
 
 // Composables
-import { createApp } from 'vue'
+import { createApp, defineCustomElement } from 'vue'
 
 // Plugins
 import { registerPlugins } from '@/plugins'
+
+// import Hello from '@/components/HelloWorld.vue';
+import Hello from '@/chartdata/SampleChart.vue'
+
+// register
+customElements.define('chart-widget', defineCustomElement(Hello))
+
+// const MyVueElement = defineCustomElement({
+//   // normal Vue component options here
+//   props: {
+//   },
+//   emits: {},
+//   template: `<div id="chart-container" class="embedChart" style="height:500px;"></div>`,
+
+//   // defineCustomElement only: CSS to be injected into shadow root
+//   styles: [`div { height: 500px; }`],
+  
+// })
+
+// customElements.define('chart-widget', MyVueElement)
 
 const app = createApp(App)
 
@@ -58,4 +76,4 @@ app.component('v-chart', ECharts)
 // app.customElement('vue-widget', App)
 registerPlugins(app)
 
-app.use(VueGridLayout, vueCustomElement).mount('#app')
+app.use(VueGridLayout).mount('#app')

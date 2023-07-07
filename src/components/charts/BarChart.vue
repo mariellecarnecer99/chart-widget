@@ -91,6 +91,7 @@
 <script>
 import EChart from "@/chartdata/EChart.vue";
 import myfunc from "@/chartScript.js";
+// import fetchChartData from "@/customelement/widget-script";
 export default {
   components: {
     EChart,
@@ -110,7 +111,7 @@ export default {
     this.handleOptions();
     this.handleScript();
     const d = document.getElementById("chart-container");
-    console.log(d);
+    // console.log(d);
     this.nodeToString(d);
   },
   methods: {
@@ -140,6 +141,7 @@ export default {
       const key = "toolbox";
       const { [key]: foo, ...rest } = this.options;
       myfunc(rest);
+      // fetchChartData(rest);
     },
 
     handleOptions() {
@@ -287,7 +289,7 @@ export default {
 
 <style>
 #chart-container {
-  visibility: hidden;
+  /* visibility: hidden; */
   max-height: 0;
 }
 </style>
