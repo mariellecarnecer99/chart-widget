@@ -21,7 +21,6 @@
     "vue-apexcharts": "^1.6.2",
     "vue-chartjs": "^5.2.0",
     "vue-custom-element": "^3.3.0",
-    "vue-d3-charts": "^0.2.8",
     "vue-echarts": "^6.6.0",
     "vue-google-charts": "^1.1.0",
     "vue-grid-layout": "^3.0.0-beta1",
