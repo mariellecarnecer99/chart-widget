@@ -7,23 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chart Widget</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
-  <script type="module" crossorigin src="/assets/index-cd0e7f02.js"></script>
+  <script src="/src/sample.js" defer></script>
+  <script type="module" crossorigin src="/assets/index-53174ba9.js"></script>
   <link rel="stylesheet" href="/assets/index-bb4adbff.css">
 </head>
 
 <body>
   <div id="app"></div>
+  <template id="chart-widget">
+    <style>
+      div {
+        height: 500px;
+        width: auto;
+      }
+    </style>
+    <div><slot name="my-chart">hello</slot></div>
+  </template>
+  <chart-widget>
+    <div slot="my-chart">
+      <div id="chart-container" class="embedChart" style="height:500px;"></div>
+    </div>
+  </chart-widget>
   
   
-  <script src="https://unpkg.com/vue@2/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-custom-element@3.3.0/dist/vue-custom-element.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/1.4.1/document-register-element.js"></script>
-  <script>
-    Vue.customElement('chart-widget', {
-      template: `<div id="chart-container" class="embedChart" style="height:500px;"></div>`
-    });
-  </script>
-  <chart-widget></chart-widget>
 </body>
 
 </html>
