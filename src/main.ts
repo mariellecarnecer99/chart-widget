@@ -52,7 +52,7 @@ import { registerPlugins } from '@/plugins'
 import Hello from '@/chartdata/SampleChart.vue'
 
 // register
-customElements.define('chart-widget', defineCustomElement(Hello))
+// customElements.define('chart-widget', defineCustomElement(Hello))
 
 // const MyVueElement = defineCustomElement({
 //   // normal Vue component options here

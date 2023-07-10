@@ -1,4 +1,33 @@
-<chart-widget></chart-widget>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
-<script type="module" crossorigin src="https://chart-widget.vercel.app/assets/index-cd0e7f02.js"></script>
-<link rel="stylesheet" href="https://chart-widget.vercel.app/assets/index-bb4adbff.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chart Widget</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <script src="/src/sample.js" defer></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <template id="chart-widget">
+    <style>
+      div {
+        height: 500px;
+        width: auto;
+      }
+    </style>
+    <div><slot name="my-chart">hello</slot></div>
+  </template>
+  <chart-widget>
+    <div slot="my-chart">
+      <div id="chart-container" class="embedChart" style="height:500px;"></div>
+    </div>
+  </chart-widget>
+  <script type="module" src="/src/chartScript.js"></script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
